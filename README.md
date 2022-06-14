@@ -42,6 +42,8 @@ Copyright (c) 2022 Seung Lee
 
 ## Tests
 
+```
+
 Description for Ticket()
 
 Test1: "should assign info to ticket object"
@@ -97,32 +99,54 @@ console.log(ticket01);
 Expected Output: 
 Ticket {name: 'Dr. Strange in the Multiverse of Madness', rating: 'PG-13', age: 27, time: '8:30 PM', day: 'Tuesday', isStudent: true, isMember: false}
 
-Description for Movie()
-
-Test1:
-Code:
-Expected Output:
 
 Description for MovieList()
 
-Test1:
-Code:
-Expected Output:
+Test1: "Create MovieList object with nothing in it and currentId of 0"
+Code: new MovieList()
+Expected Output: {movies: {}, currentId: 0}
 
 Description for MovieList.prototype.addMovie()
 
-Test1:
-Code:
-Expected Output:
+Test1: "Add movie to MovieList object"
+Code: movieList.addMovie({title: 'Lightyear', rating: 'PG'})
+Expected Output: {movies: {{title: 'Lightyear', rating: 'PG'}}, currentId: 1}
 
 Description for MovieList.prototype.assignId()
 
-Test1:
-Code:
-Expected Output:
+Test1: "Increment currentId of MovieList object by 1 and return currentId"
+Code: moiveList.assignId();
+Expected Output: 1
 
 Description for MovieList.prototype.findMovie()
 
-Test1:
-Code:
-Expected Output:
+Test1: "Return Movie object based on ID that's passed in"
+Code: movieList.findMovie(id);
+Expected Output: {title: 'Lightyear', rating: 'PG'}
+
+Description for Movie()
+
+Test1: "Create a movie object with title and rating"
+Code: new Movie('Lightyear', 'PG')
+Expected Output: { title: 'Lightyear', rating: 'PG'}
+
+
+Description for TicketsSold()
+
+Test1: "Create MovieList object with nothing in it and currentId of 0"
+Code: new TicketsSold()
+Expected Output: {tickets: {}, currentId: 0}
+
+Description for TicketsSold.prototype.addTicket()
+
+Test1: "Add ticket to TicketsSold object"
+Code: ticketsSold.addTicket(ticket)
+Expected Output: {tickets: {ticket}, currentId: 1}
+
+Description for MovieList.prototype.assignId()
+
+Test1: "Increment currentId of TicketsSold object by 1 and return currentId"
+Code: ticketsSold.assignId();
+Expected Output: 1
+
+```

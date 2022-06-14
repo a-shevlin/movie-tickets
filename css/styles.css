@@ -1,5 +1,6 @@
 body {
   background-color: #661c07;
+  font-family: 'Limelight', cursive;
   color: rgb(255, 208, 0);
 }
 
@@ -8,16 +9,62 @@ body {
   cursor: pointer;
   border: 8px solid black;
   background-color: black;
+  box-shadow:  -5px 5px 5px 5px rgba(104, 47, 39, 0.411)
 }
 
 .row {
+  justify-content: center;
   margin-top: 20px;
 }
 
 form {
   display: none;
+  justify-items: center;
+  width: 40vw;
 }
 
-#movie-title {
-  width: 300px;
+#movieName {
+  text-align: center;
+}
+
+#movieName h4 {
+  font-size: 35px;
+  width: 40vw;
+}
+
+#movieRating {
+  text-align: center;
+  font-size: 22px;
+  color:rgb(253, 178, 15);
+}
+
+#movieId {
+  display: none;
+}
+
+#formContent {
+  margin-left: 10vw;
+}
+
+select {
+  background: rgb(253, 184, 55);
+  color: #661c07;
+}
+select option {
+  background: rgb(179, 179, 179);
+  color: #661c07;
+}
+
+#formContent h5 {
+  margin-left: -1vw;
+  font-size: 18px;
+}
+
+#formContent label {
+  color:rgb(253, 142, 15);
+}
+
+#asterisk {
+  font-size: 10px;
+  color:rgb(253, 102, 15);
 }

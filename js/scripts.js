@@ -1,4 +1,20 @@
 // Business Logic
+function TicketsSold() {
+  this.tickets = {};
+  this.currentId = 0;
+}
+
+TicketsSold.prototype.addTicket = function(ticket) {
+  ticket.id = this.assignId();
+  this.ticket[ticket.id] = ticket;
+}
+
+TicketsSold.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+}
+
+
 function Ticket(name, rating, age, time, day, isStudent, isMember) {
   this.name = name;
   this.rating = rating;
@@ -73,6 +89,7 @@ function Movie(title, rating) {
 // User Interface Logic
 
 let movieList = new MovieList();
+let ticketsSold = new TicketsSold();
 
 $(document).ready(function() {
   let drStrange = new Movie('Dr. Strange in the Multiverse of Madness', 'PG-13');
@@ -81,21 +98,37 @@ $(document).ready(function() {
   let lightyear = new Movie('Lightyear', 'PG');
   movieList.addMovie(lightyear);
 
-  let ticket01 = new Ticket(movieList.findMovie(1).title, movieList.findMovie(1).rating, 27, '8:30 PM', 'Tuesday', true, false);
-
-  console.log(ticket01.price);
-
   $('.movie-poster img').click(function() {
     const movie = movieList.findMovie(parseInt(this.parentElement.id));
-    $('#movie-title').val(movie.title);
-    $('#rating').val(movie.rating);
+    $('#movie-title').text(movie.title);
+    $('#rating').text(movie.rating);
+    $('#movieId').text(movie.id);
     $('form').toggle();
   });
 
+  $('#howmuch-button').click(function(event) {
+    event.preventDefault();
+    const ticket = getTicket();
+    // enable ticket buy button
+  });
   
+  $('form').submit(function(event) {
+    event.preventDefault();
+    let ticket = getTicket();
+    ticketsSold.addTicket(ticket);
+    // clear fields and disable ticket buy button
+  });
 });
 
-
+function getTicket() {
+  // Ticket(name, rating, age, time, day, isStudent, isMember) 
+    // const age =;
+    // const movieTime =;
+    // const day =;
+    // const isStudent =;
+    // const isMember =;
+  return new Ticket();
+}
 
 /*
 Create a webpage where a 

@@ -5,6 +5,7 @@
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="js/jquery-3.6.0.js"></script>
   <script src="js/scripts.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
   <title>Movie Tickets</title>
 </head>
 <body>
@@ -21,35 +22,72 @@
       </div>
       <div class="row">   
         <form>
-          <div>
-            <input id="movie-title" type="text" placeholder="Movie Name" disabled/>
-            <input id="rating" type="text" placeholder="G" disabled/>
+          <div id="movieName">
+            <h4 id="movie-title"></h4>
           </div>
-          <div>
-            <label>Age</label>
-            <input id="age" type="number"/>
-            <label>Movie Time</label>
-            <input />
-            <label>Day</label>
-            <select name="day">
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-              <option value="Sunday">Sunday</option>
-            </select>
+          <div id="movieRating">
+            <span id="rating"></span>
           </div>
-          <div>
-            <input type="checkbox" />
-            <label name="student-discount-checkbox">Student?</label>
-            
-            <input type="checkbox" />
-            <label name="member-discount-checkbox">Member?</label>
+          <div id="movieId"></div>
+          <div id="formContent">
+            <div>
+              <h5>Enter your age to apply for Child/Senior Discount!</h5>
+            </div>
+            <div>
+              <label>Age</label>
+              <input id="age" type="number" min="4" max="122" />
+            </div>
+            <div>
+              <h5>Select a Date and Time!</h5>
+            </div>
+            <div>
+              <label>Movie Time</label>
+              <select name="time">
+                <option value="1200">12pm</option>
+                <option value="1300">1pm</option>
+                <option value="1400">2pm</option>
+                <option value="1500">3pm</option>
+                <option value="1600">4pm</option>
+                <option value="1700">5pm</option>
+                <option value="1800">6pm</option>
+                <option value="1830">6:30pm</option>
+                <option value="1900">7pm</option>
+                <option value="1930">7:30pm</option>
+                <option value="2000">8pm</option>
+                <option value="2030">8:30pm</option>
+                <option value="2100">9pm</option>
+                <option value="2130">9:30pm</option>
+                <option value="2200">10pm</option>
+                <option value="2230">10:30pm</option>
+                <option value="2300">11pm</option>
+              </select>
+              <label></label>
+              <select name="day">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
+            </div>
+            <div>
+              <h5>Please check if applicable!*</h5>
+            </div>
+            <div>
+              <input type="checkbox" />
+              <label name="student-discount-checkbox">Student?</label>
+              
+              <input type="checkbox" />
+              <label name="member-discount-checkbox">Member?</label>
+            </div>
+            <button id="howmuch-button" class="btn btn-secondary">How much is it?</button>
+            <button id="buy-button" class="btn btn-secondary" type="submit" disabled>Buy!</button>
+            <div id="asterisk">
+              <p>*Can't stack all discounts!</p>
+            </div>
           </div>
-          <button id="howmuch-button" class="btn btn-secondary">How much is it?</button>
-          <button id="buy-button" class="btn btn-secondary" disabled>Buy!</button>
         </form>
       </div>
     <div>
