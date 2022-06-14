@@ -12,12 +12,12 @@ base price
 function Ticket(name, rating, age, time, day, isStudent, isMember) {
   this.name = name;
   this.rating = rating;
-  this.price = 8;
   this.age = age;
   this.time = time;
   this.day = day;
   this.isStudent = isStudent;
   this.isMember = isMember;
+  this.price = this.calculateTicketPrice();
 }
 
 /*
@@ -26,13 +26,15 @@ method that calculates the price based on age
     8     60
   student = slightly cheaper price
   adult = most expensive
+  membership
 
   extended goal(?)
-  change price based on size of screen and stuff (IMAX 3D, IMAX 2D, 4D, REALD 3D, Digital Cinema, membership)
+  change price based on size of screen (IMAX 3D, IMAX 2D, 4D, REALD 3D, Digital Cinema)
     stacking discounts?
 */
 Ticket.prototype.calculateTicketPrice = function() {
-  let output = [this.price, ""];
+  let basePrice = 8;
+  let output = [basePrice, ""];
   if (this.age <= 8 || this.age >= 60) {
     output[0] -= 2;
     output[1] = "Congratulations, you get a discount due to your age!";
@@ -49,10 +51,10 @@ Ticket.prototype.calculateTicketPrice = function() {
     output[0] += 1;
     output[1] = "Sorry you can't qualify for both of these discounts."
   }
-  if (this.price - 3 === price) {
+  if (basePrice - 3 === output[0]) {
     output[1] = "Congratulations, you qualify for two discounts!";
   }
-  if (this.price - 4 === price && this.isMember) {
+  if (basePrice - 4 === output[0] && this.isMember) {
     output[0] += 5;
     output[1] = "Are you really a member, student, and " + this.age + " years old?";
   }
@@ -66,7 +68,7 @@ const movies = [
   },
 ]
 let ticket01 = new Ticket(movies[0].title, movies[0].rating, 27, '8:30 PM', 'Tuesday', true, false);
-console.log(ticket01.calculateTicketPrice());
+console.log(ticket01.price);
 
 
 
@@ -95,7 +97,10 @@ const moviesMain = [
 ]
 
 $(document).ready(function() {
-  
+  $('.movie-poster img').click(function() {
+    console.log("You clicked movie poster!");
+    $('form').toggle();
+  });
 });
 
 
