@@ -15,16 +15,45 @@
     <div>
       <div class="row">
         <div id="poster01" class="movie-poster col-sm-3"><img src="img/drstrange.jpg" alt="image of Dr. Strange Movie Poster"></div>
-        <div id="poster02" class="movie-poster col-sm-3"></div>
-        <div id="poster03" class="movie-poster col-sm-3"></div>
-        <div id="poster04" class="movie-poster col-sm-3"></div>
-      </div>      
-      <form>
-        <label></label>
-        <input />
-        <button id="howmuch-button" class="btn btn-secondary">How much is it?</button>
-        <button id="buy-button" class="btn btn-secondary" disabled>Buy!</button>
-      </form>
+        <div id="poster02" class="movie-poster col-sm-3"><img src="" alt=""></div>
+        <div id="poster03" class="movie-poster col-sm-3"><img src="" alt=""></div>
+        <div id="poster04" class="movie-poster col-sm-3"><img src="" alt=""></div>
+      </div>
+      <div class="row">   
+        <form>
+          <div>
+            <label>Movie</label>
+            <input id="movie" type="text" placeholder="Movie Name" disabled/>
+            <label>Rating</label>
+            <input id="rating" type="text" placeholder="G" disabled/>
+          </div>
+          <div>
+            <label>Age</label>
+            <input id="age" type="number"/>
+            <label>Movie Time</label>
+            <input />
+            <label>Day</label>
+            <select name="day">
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label name="student-discount-checkbox">Student?</label>
+            
+            <input type="checkbox" />
+            <label name="member-discount-checkbox">Member?</label>
+          </div>
+          <button id="howmuch-button" class="btn btn-secondary">How much is it?</button>
+          <button id="buy-button" class="btn btn-secondary" disabled>Buy!</button>
+        </form>
+      </div>
     <div>
   </div>
 </body>

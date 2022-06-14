@@ -64,7 +64,8 @@ Ticket.prototype.calculateTicketPrice = function() {
 const movies = [
   {
     title: "Dr. Strange in the Multiverse of Madness", 
-    rating: "PG-13"
+    rating: "PG-13",
+    id: "poster01",
   },
 ]
 let ticket01 = new Ticket(movies[0].title, movies[0].rating, 27, '8:30 PM', 'Tuesday', true, false);
@@ -99,6 +100,10 @@ const moviesMain = [
 $(document).ready(function() {
   $('.movie-poster img').click(function() {
     console.log("You clicked movie poster!");
+    console.log(movies.find(function(element) {
+      this.parentElement.id
+    }));
+    
     $('form').toggle();
   });
 });

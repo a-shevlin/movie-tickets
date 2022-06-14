@@ -39,3 +39,59 @@ _{Let people know what to do if they run into any issues or have questions, idea
 [GNU](/LICENSE-GNU)
 
 Copyright (c) 2022 Seung Lee
+
+## Tests
+
+Description for Ticket();
+
+Test1: "should assign info to ticket object"
+Code: console.log(Ticket);
+Expected Output:
+ƒ Ticket(name, rating, age, time, day, isStudent, isMember) {
+  this.name = name;
+  this.rating = rating;
+  this.age = age;
+  this.time = time;
+  this.day = day;
+  this.isStudent = isStudent;
+
+Description for calculateTicketPrice()
+
+Test1: "if age is less or equal to 8 or greater or equal to 60, output [6, "Congratulations, you get a discount due to your age!"]"
+Code:
+calculateTicketPrice();
+Expected Output: [6, "Congratulations, you get a discount due to your age!"]"
+
+Test2: "if age is greater than 8 or less than 60,and the person is a student, output [7, "Congratulations, you get a student discount!"]
+Code:
+calculateTicketPrice();
+Expected Output: [7, "Congratulations, you get a student discount!"]
+
+Test3: "if age is greater than 8 or less than 60,and the person is a member, output [7, "Congratulations, you get a membership discount!"]"
+Code:
+calculateTicketPrice();
+Expected Output: [7, "Congratulations, you get a membership discount!"]
+
+Test4: "if age is greater than 8 or less than 60,and the person is a student and a member, output [7, "Sorry you can't qualify for both of these discounts."]"
+Code:
+calculateTicketPrice();
+Expected Output: [7, "Sorry you can't qualify for both of these discounts."]
+
+Test5: "if age is less or equal to 8 or greater or equal to 60 and is a student or is a member, output [5, "Congratulations, you qualify for two discounts!"]"
+Code:
+calculateTicketPrice();
+Expected Output: [5, "Congratulations, you qualify for two discounts!"]
+
+Test6: "if age is less or equal to 8 or greater or equal to 60 and is a student and is a member, output [9, "Are you really a member, student, and " + age + " years old?"]"
+Code:
+calculateTicketPrice();
+Expected Output: [9, "Are you really a member, student, and " + age + " years old?"]
+
+
+Description for new Ticket();
+
+Test1: "if assigned ticket values can be stored"
+Code: 
+let ticket01 = new Ticket(movies[0].title, movies[0].rating, 27, '8:30 PM', 'Tuesday', true, false);
+console.log(ticket01);
+Expected Output: Ticket {name: 'Dr. Strange in the Multiverse of Madness', rating: 'PG-13', age: 27, time: '8:30 PM', day: 'Tuesday', isStudent: true, isMember: false}

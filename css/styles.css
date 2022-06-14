@@ -3,6 +3,10 @@
   cursor: pointer;
 }
 
+.row {
+  margin-top: 20px;
+}
+
 form {
   display: none;
 }
