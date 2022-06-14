@@ -42,7 +42,7 @@ Copyright (c) 2022 Seung Lee
 
 ## Tests
 
-Description for Ticket();
+Description for Ticket()
 
 Test1: "should assign info to ticket object"
 Code: console.log(Ticket);
@@ -88,10 +88,41 @@ calculateTicketPrice();
 Expected Output: [9, "Are you really a member, student, and " + age + " years old?"]
 
 
-Description for new Ticket();
+Description for new Ticket()
 
 Test1: "if assigned ticket values can be stored"
 Code: 
-let ticket01 = new Ticket(movies[0].title, movies[0].rating, 27, '8:30 PM', 'Tuesday', true, false);
+let ticket01 = new Ticket('Dr. Strange in the Multiverse of Madness', 'PG-13', 27, '8:30 PM', 'Tuesday', true, false);
 console.log(ticket01);
-Expected Output: Ticket {name: 'Dr. Strange in the Multiverse of Madness', rating: 'PG-13', age: 27, time: '8:30 PM', day: 'Tuesday', isStudent: true, isMember: false}
+Expected Output: 
+Ticket {name: 'Dr. Strange in the Multiverse of Madness', rating: 'PG-13', age: 27, time: '8:30 PM', day: 'Tuesday', isStudent: true, isMember: false}
+
+Description for Movie()
+
+Test1:
+Code:
+Expected Output:
+
+Description for MovieList()
+
+Test1:
+Code:
+Expected Output:
+
+Description for MovieList.prototype.addMovie()
+
+Test1:
+Code:
+Expected Output:
+
+Description for MovieList.prototype.assignId()
+
+Test1:
+Code:
+Expected Output:
+
+Description for MovieList.prototype.findMovie()
+
+Test1:
+Code:
+Expected Output:

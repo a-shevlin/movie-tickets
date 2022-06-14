@@ -1,14 +1,4 @@
 // Business Logic
-/*
-movie {
-  name
-  rating
-}
-time
-day (M-S)
-base price
-*/
-
 function Ticket(name, rating, age, time, day, isStudent, isMember) {
   this.name = name;
   this.rating = rating;
@@ -21,16 +11,8 @@ function Ticket(name, rating, age, time, day, isStudent, isMember) {
 }
 
 /*
-method that calculates the price based on age
-  child/senior tickets = cheapest same price 
-    8     60
-  student = slightly cheaper price
-  adult = most expensive
-  membership
-
   extended goal(?)
   change price based on size of screen (IMAX 3D, IMAX 2D, 4D, REALD 3D, Digital Cinema)
-    stacking discounts?
 */
 Ticket.prototype.calculateTicketPrice = function() {
   let basePrice = 8;
@@ -61,51 +43,56 @@ Ticket.prototype.calculateTicketPrice = function() {
   return output;
 };
 
-const movies = [
-  {
-    title: "Dr. Strange in the Multiverse of Madness", 
-    rating: "PG-13",
-    id: "poster01",
-  },
-]
-let ticket01 = new Ticket(movies[0].title, movies[0].rating, 27, '8:30 PM', 'Tuesday', true, false);
-console.log(ticket01.price);
+function MovieList() {
+  this.movies = {};
+  this.currentId = 0;
+}
 
+MovieList.prototype.addMovie = function(movie) {
+  movie.id = this.assignId();
+  this.movies[movie.id] = movie;
+}
 
+MovieList.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+}
+
+MovieList.prototype.findMovie = function(id) {
+  if (this.movies[id] != undefined) {
+    return this.movies[id];
+  }
+  return false;
+}
+
+function Movie(title, rating) {
+  this.title = title;
+  this.rating = rating;
+}
 
 // User Interface Logic
-const moviesMain = [
-  {
-    title: "Dr. Strange in the Multiverse of Madness", 
-    rating: "PG-13"
-  },
-  {
-    title: "Lightyear",
-    rating: "PG"
-  },
-  {
-    title: "Jurassic World: Dominion",
-    rating: "PG-13"
-  },
-  {
-    title: "The Bob's Burgers Movie",
-    rating: "PG-13"
-  },
-  {
-    title: "The Black Phone",
-    rating: "R"
-  },
-]
+
+let movieList = new MovieList();
 
 $(document).ready(function() {
+  let drStrange = new Movie('Dr. Strange in the Multiverse of Madness', 'PG-13');
+  movieList.addMovie(drStrange);
+
+  let lightyear = new Movie('Lightyear', 'PG');
+  movieList.addMovie(lightyear);
+
+  let ticket01 = new Ticket(movieList.findMovie(1).title, movieList.findMovie(1).rating, 27, '8:30 PM', 'Tuesday', true, false);
+
+  console.log(ticket01.price);
+
   $('.movie-poster img').click(function() {
-    console.log("You clicked movie poster!");
-    console.log(movies.find(function(element) {
-      this.parentElement.id
-    }));
-    
+    const movie = movieList.findMovie(parseInt(this.parentElement.id));
+    $('#movie-title').val(movie.title);
+    $('#rating').val(movie.rating);
     $('form').toggle();
   });
+
+  
 });
 
 

@@ -1,6 +1,13 @@
+body {
+  background-color: #661c07;
+  color: rgb(255, 208, 0);
+}
+
 .movie-poster img {
   width: 100%;
   cursor: pointer;
+  border: 8px solid black;
+  background-color: black;
 }
 
 .row {
@@ -9,4 +16,8 @@
 
 form {
   display: none;
+}
+
+#movie-title {
+  width: 300px;
 }
