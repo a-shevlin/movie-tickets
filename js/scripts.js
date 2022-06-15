@@ -151,13 +151,13 @@ function attachSoldTickets(ticket) {
   const title = document.createElement('ul');
   title.innerHTML = ticket.title;
   const age = document.createElement('li');
-  age.innerHTML = "$ " + ticket.age;
+  age.innerHTML = ticket.age;
   const dayTime = document.createElement('li');
   dayTime.innerHTML = ticket.day + " " + ticket.time;
   const isStudent = ticket.isStudent;
   const isMember = ticket.isMember;
   const price = document.createElement('li');
-  price.innerHTML = ticket.priceMsg[0];
+  price.innerHTML = "$ " + ticket.priceMsg[0];
   let discounts = "";
   if (ticket.isStudent) {
     discounts += 'Student Discount ';
@@ -178,6 +178,7 @@ function attachSoldTickets(ticket) {
   discountLI.innerHTML = discounts;
   title.appendChild(age);
   title.appendChild(dayTime);
+  title.appendChild(price);
   title.appendChild(discountLI);
   $('#tickets-sold-list').append(title);
   $('#tickets-sold h5').show();
