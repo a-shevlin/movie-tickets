@@ -107,11 +107,14 @@ $(document).ready(function() {
 
   // when movie posters are clicked
   $('.movie-poster img').click(function() {
-    const movie = movieList.findMovie(parseInt(this.parentElement.id));
-    $('#movie-title').text(movie.title);
-    $('#rating').text(movie.rating);
-    $('#movieId').text(movie.id);
-    $('form#ticketForm').slideToggle();
+    let poster = this;
+    if ($('form#ticketForm').is(':visible')) {
+      $('form#ticketForm').slideUp(function() {
+        fillTicketInfo(poster);
+      });
+    } else {
+      fillTicketInfo(poster);
+    } 
   });
 
   $('#howmuch-button').click(function(event) {
@@ -136,6 +139,13 @@ $(document).ready(function() {
   });
 });
 
+function fillTicketInfo(poster) {
+  const movie = movieList.findMovie(parseInt(poster.parentElement.id));
+  $('#movie-title').text(movie.title);
+  $('#rating').text(movie.rating);
+  $('#movieId').text(movie.id);
+}
+
 function attachSoldTickets(ticket) {
   const title = document.createElement('ul');
   title.innerHTML = ticket.title;
@@ -149,16 +159,16 @@ function attachSoldTickets(ticket) {
   price.innerHTML = ticket.priceMsg[0];
   let discounts = "";
   if (ticket.isStudent) {
-    discounts.concat('Student Discount ');
+    discounts += 'Student Discount ';
   }
   if (ticket.isMember) {
-    discounts.concat('Membership Discount ');
+    discounts += 'Membership Discount ';
   } 
   if (ticket.age <= 8 || ticket.age >= 60) {
     if (ticket.isStudent && ticket.isMember) {
       discounts = "Can't Use ALL Discounts"
     } else {
-      discounts.concat('Age Discount');
+      discounts += 'Age Discount';
     }
   } else {
     discounts = 'No discount applied';
