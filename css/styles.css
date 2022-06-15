@@ -4,6 +4,26 @@ body {
   color: rgb(255, 208, 0);
 }
 
+.navbar {
+  background-color: #3a1a10;
+}
+
+.navbar-brand {
+  background-color: #4e1b0c;
+  padding: 10px;
+}
+
+#
+
+#now-showing {
+  margin: auto;
+  width: 300px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
 .movie-poster img {
   width: 100%;
   cursor: pointer;
@@ -43,7 +63,7 @@ form {
 }
 
 #formContent {
-  margin-left: 10vw;
+  text-align: center;
 }
 
 select {
@@ -56,7 +76,7 @@ select option {
 }
 
 #formContent h5 {
-  margin-left: -1vw;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -67,4 +87,17 @@ select option {
 #asterisk {
   font-size: 10px;
   color:rgb(253, 102, 15);
+}
+
+.ticketReturn {
+  display: none;
+  text-align: center;
+}
+
+#tickets-sold h5 {
+  display: none;
+}
+
+#tickets-sold ul {
+  margin-top: 20px;
 }

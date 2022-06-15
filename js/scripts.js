@@ -6,7 +6,7 @@ function TicketsSold() {
 
 TicketsSold.prototype.addTicket = function(ticket) {
   ticket.id = this.assignId();
-  this.ticket[ticket.id] = ticket;
+  this.tickets[ticket.id] = ticket;
 }
 
 TicketsSold.prototype.assignId = function() {
@@ -15,15 +15,15 @@ TicketsSold.prototype.assignId = function() {
 }
 
 
-function Ticket(name, rating, age, time, day, isStudent, isMember) {
-  this.name = name;
+function Ticket(title, rating, age, time, day, isStudent, isMember) {
+  this.title = title;
   this.rating = rating;
   this.age = age;
   this.time = time;
   this.day = day;
   this.isStudent = isStudent;
   this.isMember = isMember;
-  this.price = this.calculateTicketPrice();
+  this.priceMsg = this.calculateTicketPrice();
 }
 
 /*
@@ -31,7 +31,7 @@ function Ticket(name, rating, age, time, day, isStudent, isMember) {
   change price based on size of screen (IMAX 3D, IMAX 2D, 4D, REALD 3D, Digital Cinema)
 */
 Ticket.prototype.calculateTicketPrice = function() {
-  let basePrice = 8;
+  const basePrice = 8;
   let output = [basePrice, ""];
   if (this.age <= 8 || this.age >= 60) {
     output[0] -= 2;
@@ -92,42 +92,112 @@ let movieList = new MovieList();
 let ticketsSold = new TicketsSold();
 
 $(document).ready(function() {
+  // creating movies and adding them to movieList
   let drStrange = new Movie('Dr. Strange in the Multiverse of Madness', 'PG-13');
   movieList.addMovie(drStrange);
 
   let lightyear = new Movie('Lightyear', 'PG');
   movieList.addMovie(lightyear);
 
+  let jurassicWorld = new Movie('Jurassic World: Dominion', 'PG-13');
+  movieList.addMovie(jurassicWorld);
+
+  let blackPhone = new Movie('The Black Phone', 'R');
+  movieList.addMovie(blackPhone);
+
+  // when movie posters are clicked
   $('.movie-poster img').click(function() {
     const movie = movieList.findMovie(parseInt(this.parentElement.id));
     $('#movie-title').text(movie.title);
     $('#rating').text(movie.rating);
     $('#movieId').text(movie.id);
-    $('form').toggle();
+    $('form#ticketForm').slideToggle();
   });
 
   $('#howmuch-button').click(function(event) {
     event.preventDefault();
     const ticket = getTicket();
+    // print in ticketReturn the price and the msg
+    $('#ticket-price').text("$ " + ticket.priceMsg[0]);
+    $('#ticket-price-msg').text(ticket.priceMsg[1]);
+    $('.ticketReturn').toggle();
     // enable ticket buy button
+    $('#buy-button').removeAttr('disabled');
   });
   
-  $('form').submit(function(event) {
+  $('form#ticketForm').submit(function(event) {
     event.preventDefault();
-    let ticket = getTicket();
+    const ticket = getTicket();
     ticketsSold.addTicket(ticket);
+    attachSoldTickets(ticket);
     // clear fields and disable ticket buy button
+    $('#buy-button').prop('disabled', true);
+    clearTicketInformation();
   });
 });
 
+function attachSoldTickets(ticket) {
+  const title = document.createElement('ul');
+  title.innerHTML = ticket.title;
+  const age = document.createElement('li');
+  age.innerHTML = "$ " + ticket.age;
+  const dayTime = document.createElement('li');
+  dayTime.innerHTML = ticket.day + " " + ticket.time;
+  const isStudent = ticket.isStudent;
+  const isMember = ticket.isMember;
+  const price = document.createElement('li');
+  price.innerHTML = ticket.priceMsg[0];
+  let discounts = "";
+  if (ticket.isStudent) {
+    discounts.concat('Student Discount ');
+  }
+  if (ticket.isMember) {
+    discounts.concat('Membership Discount ');
+  } 
+  if (ticket.age <= 8 || ticket.age >= 60) {
+    if (ticket.isStudent && ticket.isMember) {
+      discounts = "Can't Use ALL Discounts"
+    } else {
+      discounts.concat('Age Discount');
+    }
+  } else {
+    discounts = 'No discount applied';
+  }
+  const discountLI = document.createElement('li');
+  discountLI.innerHTML = discounts;
+  title.appendChild(age);
+  title.appendChild(dayTime);
+  title.appendChild(discountLI);
+  $('#tickets-sold-list').append(title);
+  $('#tickets-sold h5').show();
+}
+
 function getTicket() {
-  // Ticket(name, rating, age, time, day, isStudent, isMember) 
-    // const age =;
-    // const movieTime =;
-    // const day =;
-    // const isStudent =;
-    // const isMember =;
-  return new Ticket();
+  const title = $('#movie-title').text();
+  const rating = $('#rating').text();
+  const age = parseInt($('#age').val());
+  const movieTime = $('#time').val();
+  const day = $('#day').val();
+  let isStudent = $('input:checkbox[name=student-discount-checkbox]:checked').val();
+  if (isStudent === 'on') {
+    isStudent = true;
+  } else {
+    isStudent = false;
+  }
+  let isMember = $('input:checkbox[name=member-discount-checkbox]:checked').val();
+  if (isMember === 'on') {
+    isMember = true;
+  } else {
+    isMember = false;
+  }
+  return new Ticket(title, rating, age, movieTime, day, isStudent, isMember);
+}
+
+function clearTicketInformation() {
+  $('#age').val("");
+  $('input:checkbox[name=student-discount-checkbox]').prop('checked', false);
+  $('input:checkbox[name=member-discount-checkbox]').prop('checked', false);
+  $('.ticketReturn').toggle();
 }
 
 /*

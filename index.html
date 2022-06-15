@@ -6,22 +6,29 @@
   <script src="js/jquery-3.6.0.js"></script>
   <script src="js/scripts.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-  <title>Movie Tickets</title>
+  <title>Shevlin & Lee Theater</title>
 </head>
 <body>
   <div class="container">
     <div>
-      <h1>Movie Tickets</h1>
-    </div>
+        <nav class="navbar">
+          <h1 class="navbar-brand">Shevlin & Lee Theater</h1>
+          <h1 class="navbar-brand" id="nav-ticket">Movie Tickets</h1>
+          <h1 class="navbar-brand">Contact Us</h1>
+        </nav>
+      </div>
     <div>
+      <div>
+        <h2 id="now-showing">Now Showing</h2>
+      </div>
       <div class="row">
         <div id="1" class="movie-poster col-sm-3"><img src="img/drstrange.jpg" alt="image of Dr. Strange Movie Poster"></div>
         <div id="2" class="movie-poster col-sm-3"><img src="img/lightyear.jpg" alt="image of Lightyear Movie Poster"></div>
-        <div id="3" class="movie-poster col-sm-3"><img src="" alt=""></div>
-        <div id="4" class="movie-poster col-sm-3"><img src="" alt=""></div>
+        <div id="3" class="movie-poster col-sm-3"><img src="img/jurrassicworld.jpg" alt="image of Jurassic World: Dominion Movie Poster"></div>
+        <div id="4" class="movie-poster col-sm-3"><img src="img/blackphone.jpg" alt="image of The Black Phone Movie Poster"></div>
       </div>
       <div class="row">   
-        <form>
+        <form id="ticketForm">
           <div id="movieName">
             <h4 id="movie-title"></h4>
           </div>
@@ -42,8 +49,8 @@
             </div>
             <div>
               <label>Movie Time</label>
-              <select name="time">
-                <option value="1200">12pm</option>
+              <select id="time">
+                <option value="1200" default>12pm</option>
                 <option value="1300">1pm</option>
                 <option value="1400">2pm</option>
                 <option value="1500">3pm</option>
@@ -62,8 +69,8 @@
                 <option value="2300">11pm</option>
               </select>
               <label></label>
-              <select name="day">
-                <option value="Monday">Monday</option>
+              <select id="day">
+                <option value="Monday" default>Monday</option>
                 <option value="Tuesday">Tuesday</option>
                 <option value="Wednesday">Wednesday</option>
                 <option value="Thursday">Thursday</option>
@@ -76,11 +83,11 @@
               <h5>Please check if applicable!*</h5>
             </div>
             <div>
-              <input type="checkbox" />
-              <label name="student-discount-checkbox">Student?</label>
+              <input type="checkbox" name="student-discount-checkbox" />
+              <label for="student-discount-checkbox">Student?</label>
               
-              <input type="checkbox" />
-              <label name="member-discount-checkbox">Member?</label>
+              <input type="checkbox" name="member-discount-checkbox"/>
+              <label for="member-discount-checkbox">Member?</label>
             </div>
             <button id="howmuch-button" class="btn btn-secondary">How much is it?</button>
             <button id="buy-button" class="btn btn-secondary" type="submit" disabled>Buy!</button>
@@ -88,7 +95,16 @@
               <p>*Can't stack all discounts!</p>
             </div>
           </div>
+          <div class="ticketReturn">
+            <h4>Your total is: <span id="ticket-price"></span></h4>
+            <p id="ticket-price-msg"></p>
+          </div>
         </form>
+      </div>
+      <div id="tickets-sold" class="row">
+        <h5>Tickets Sold</h5>
+        <ul id="tickets-sold-list">
+        </ul>
       </div>
     <div>
   </div>

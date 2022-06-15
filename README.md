@@ -149,4 +149,12 @@ Test1: "Increment currentId of TicketsSold object by 1 and return currentId"
 Code: ticketsSold.assignId();
 Expected Output: 1
 
+
+Description for getTicket()
+
+Test1: "Grab the values from the form and generate and return Ticket object"
+Code: getTicket();
+Expected Output: {name: 'Dr. Strange in the Multiverse of Madness', rating: 'PG-13', age: 27, time: '8:30 PM', day: 'Tuesday', isStudent: true, isMember: false}
+
+
 ```
