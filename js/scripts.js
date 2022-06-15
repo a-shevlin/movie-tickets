@@ -144,6 +144,7 @@ function fillTicketInfo(poster) {
   $('#movie-title').text(movie.title);
   $('#rating').text(movie.rating);
   $('#movieId').text(movie.id);
+  $('form#ticketForm').slideToggle();
 }
 
 function attachSoldTickets(ticket) {
